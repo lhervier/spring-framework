@@ -191,9 +191,11 @@ public abstract class WebApplicationContextUtils {
 			Map<String, String> parameterMap = new HashMap<String, String>();
 			if (servletContext != null) {
 				Enumeration<?> paramNameEnum = servletContext.getInitParameterNames();
-				while (paramNameEnum.hasMoreElements()) {
-					String paramName = (String) paramNameEnum.nextElement();
-					parameterMap.put(paramName, servletContext.getInitParameter(paramName));
+				if( paramNameEnum != null ) {
+					while (paramNameEnum.hasMoreElements()) {
+						String paramName = (String) paramNameEnum.nextElement();
+						parameterMap.put(paramName, servletContext.getInitParameter(paramName));
+					}
 				}
 			}
 			if (servletConfig != null) {
